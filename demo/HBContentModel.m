@@ -16,7 +16,7 @@
 @implementation HBContentModel
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"pictures" : @"YYAttachment" };
+    return @{@"pictures" : @"Picture" };
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "HBTableViewCell.h"
 #import "HBContentModel.h"
 #import <YYKit/NSObject+YYModel.h>
+#import <UITableView+FDTemplateLayoutCell.h>
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -53,9 +54,15 @@
     return self.models.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [tableView fd_heightForCellWithIdentifier:@"id" configuration:^(HBTableViewCell *cell) {
+        cell.model = self.models[indexPath.row];
+    }];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HBTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id" forIndexPath:indexPath];
+    cell.model = self.models[indexPath.row];
     return cell;
 }
 

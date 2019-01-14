@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HBContentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HBTableViewCell : UITableViewCell
-
+@property (nonatomic, strong, readwrite, nullable) HBContentModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

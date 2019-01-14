@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Picture : NSObject
 
 @property (nonatomic, strong) NSString * height;
-@property (nonatomic, strong) NSString * src;
+@property (nonatomic, strong) NSURL * src;
 @property (nonatomic, strong) NSString * width;
 
 @end
@@ -30,12 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * mobile;
 @property (nonatomic, strong) NSString * objectName;
 @property (nonatomic, strong) NSString * objectType;
-@property (nonatomic, strong) NSArray * pictures;
+@property (nonatomic, strong) NSArray <Picture *>* pictures;
 @property (nonatomic, assign) NSInteger readCount;
 @property (nonatomic, strong) NSString * recoveryTime;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, strong) NSString * summary;
-@property (nonatomic, strong) NSString * summaryImages;
+@property (nonatomic, strong) NSURL * summaryImages;
 @property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * topTags;
 @property (nonatomic, strong) NSString * topicSource;
