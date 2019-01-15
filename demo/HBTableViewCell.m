@@ -9,6 +9,7 @@
 #import "HBTableViewCell.h"
 #import <Masonry/Masonry.h>
 #import <YYKit/YYKit.h>
+#import <UITableView+FDTemplateLayoutCell.h>
 @interface HBTableViewCell ()
 
 @property (nonatomic, strong, readwrite) UIImageView *userIcon;
@@ -36,11 +37,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setupUI];
+        // self.fd_enforceFrameLayout = YES;
     }
     return self;
 }
 
 - (void)setupUI {
+    self.layer.borderColor = [UIColor redColor].CGColor;
+    self.layer.borderWidth = 1.0;
     _userIcon = [UIImageView new];
     _userName = [UILabel new];
     _content = [UILabel new];
@@ -56,22 +60,22 @@
 
 - (void)layoutSubviews {
     [_userIcon mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(8.f);
-        make.left.equalTo(self.contentView).offset(15.f);
+        make.top.equalTo(self.contentView).offset(8.f).key(@"icon.top");
+        make.left.equalTo(self.contentView).offset(15.f).key(@"icon.left");
         make.width.mas_equalTo(35);
-        make.height.mas_equalTo(35);
+        make.height.mas_equalTo(35).priorityHigh().key(@"icon.height");
     }];
     [_content mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.userIcon.mas_bottom).offset(10.f);
         make.left.equalTo(self.userIcon);
         make.right.equalTo(self.contentView).offset(-15.f);
-        make.bottom.equalTo(self.commentImage.mas_top).offset(-10.f);
+        // make.bottom.equalTo(self.commentImage.mas_top).offset(-10.f);
     }];
     [_commentImage mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.content.mas_bottom).offset(10.f);
         make.left.equalTo(self.content);
         make.right.lessThanOrEqualTo(self.contentView).offset(-15.f);
-        make.bottom.equalTo(self.timeLabel.mas_top).offset(-10.f);
+        // make.bottom.equalTo(self.timeLabel.mas_top).offset(-10.f);
     }];
     
     [_timeLabel mas_updateConstraints:^(MASConstraintMaker *make) {

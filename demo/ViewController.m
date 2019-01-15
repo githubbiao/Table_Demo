@@ -24,6 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _models = @[].mutableCopy;
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        // Fallback on earlier versions
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    self.navigationController.navigationBar.translucent = NO;
     [self.view addSubview:self.tableView];
     [self loadData];
 }
@@ -45,6 +52,7 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorColor = [UIColor clearColor];
         [_tableView registerClass:[HBTableViewCell class] forCellReuseIdentifier:@"id"];
     }
     return _tableView;
